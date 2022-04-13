@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
@@ -34,35 +34,26 @@ body {
 <head>
 <body>
 
-
 <p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1>
-
 
 <hr>
 <center><a href="/index" class="button">Home</a> <a href="/stuff" class="button">Projects</a> <a href="/about" class="button">About</a> <a href="" class="button">Coming Soon</a></center>
 <hr>
 
-
 <p>Controls: Use the arrow keys to move and backspace to clear your work</p>
 <p>You can use the "< and >" keys to change speed</p>
-
-
-
-
-
-
-
+<p>Use numbers between 1 and 9 to change size</p>
+<p>You can change your color! Press R for red, O for orange, and so on! "-" Will give you white while "=" will give you black</p>
 
 <center><canvas id="canvas" style="border:1px solid #000000;">
 Your browser doesn't support this project. Update your browser or try a different one.
 </canvas></center>
 
-
 <script>
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 600;
+canvas.height = 400;
 var keys = {};
 window.addEventListener('keydown', function (e) {
 keys[e.keyCode] = true;
@@ -75,7 +66,7 @@ function Box(options) {
 this.x = options.x || 10;
 this.y = options.y || 10;
 this.width = options.width || 40;
-this.height = options.height || 50;
+this.height = options.height || 40;
 this.color = options.color || '#000000'
 this.speed = options.speed || 5;
 this.direction = options.direction || 'right';
@@ -113,13 +104,11 @@ if (player.x < 0) {
 player.x = 1;
 player.direction = 'right';
 }
-if (player.y > 440) {
-player.y = 439;
-player.direction = 'up';
+if (player.y > canvas.height) {
+player.y = canvas.height;
 }
-if (player.x > 650) {
-player.x = 649;
-player.direction = 'left';
+if (player.x > canvas.width) {
+player.x = canvas.width;
 }
 if (8 in keys) {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -129,6 +118,66 @@ player.speed -= 0.1;
 }
 if (190 in keys) {
 player.speed += 0.1;
+}
+if (49 in keys) {
+player.width = 10;
+player.height = 10;
+}
+if (50 in keys) {
+player.width = 20;
+player.height = 20;
+}
+if (51 in keys) {
+player.width = 30;
+player.height = 30;
+}
+if (52 in keys) {
+player.width = 40;
+player.height = 40;
+}
+if (53 in keys) {
+player.width = 50;
+player.height = 50;
+}
+if (54 in keys) {
+player.width = 60;
+player.height = 60;
+}
+if (55 in keys) {
+player.width = 70;
+player.height = 70;
+}
+if (56 in keys) {
+player.width = 80;
+player.height = 80;
+}
+if (57 in keys) {
+player.width = 90;
+player.height = 90;
+}
+if (82 in keys) {
+player.color = 'red';
+}
+if (79 in keys) {
+player.color = 'orange';
+}
+if (89 in keys) {
+player.color = 'yellow';
+}
+if (71 in keys) {
+player.color = 'green';
+}
+if (66 in keys) {
+player.color = 'blue';
+}
+if (80 in keys) {
+player.color = 'purple';
+}
+if (187 in keys) {
+player.color = 'black';
+}
+if (189 in keys) {
+player.color = 'white';
 }
 }
 function drawBox(box) {
@@ -148,7 +197,5 @@ window.requestAnimationFrame(loop);
 }
 loop();
 </script>
-
-
 </body>
 </html>
