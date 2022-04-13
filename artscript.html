@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Starway Galaxy - Artscript</title>
+<style>
+.button {
+  background-color: #57544e;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid black;
+}
+body {
+  background-color: lightgrey;
+  font-family: "Arial Black", Helvetica, sans-serif;
+  color: black;
+}
+#canvas {
+    margin: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 3px solid green;
+    width: 600px;
+    height: 400px;
+}
+</style>
+<head>
+<body>
+
+
+<p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1>
+
+
+<hr>
+<center><a href="/index" class="button">Home</a> <a href="/stuff" class="button">Projects</a> <a href="/about" class="button">About</a> <a href="" class="button">Coming Soon</a></center>
+<hr>
+
+
+<p>Controls: Use the arrow keys to move and backspace to clear your work</p>
+<p>You can use the "< and >" keys to change speed</p>
+
+
+
+
+
+
+
+
+<center><canvas id="canvas" style="border:1px solid #000000;">
+Your browser doesn't support this project. Update your browser or try a different one.
+</canvas></center>
+
+
+<script>
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+var keys = {};
+window.addEventListener('keydown', function (e) {
+keys[e.keyCode] = true;
+e.preventDefault();
+});
+window.addEventListener('keyup', function (e) {
+delete keys[e.keyCode];
+});
+function Box(options) {
+this.x = options.x || 10;
+this.y = options.y || 10;
+this.width = options.width || 40;
+this.height = options.height || 50;
+this.color = options.color || '#000000'
+this.speed = options.speed || 5;
+this.direction = options.direction || 'right';
+}
+var player = new Box({
+X: 10,
+y: 10,
+width: 40,
+height: 40,
+color: 'black',
+speed: 5
+});
+function input(player) {
+if (37 in keys) {
+player.x -= player.speed;
+player.direction = 'left';
+}
+if (39 in keys) {
+player.x += player.speed;
+player.direction = 'right';
+}
+if (38 in keys) {
+player.y -= player.speed;
+player.direction = 'up';
+}
+if (40 in keys) {
+player.y += player.speed;
+player.direction = 'down';
+}
+if (player.y < 0) {
+player.y = 1;
+player.direction = 'down';
+}
+if (player.x < 0) {
+player.x = 1;
+player.direction = 'right';
+}
+if (player.y > 440) {
+player.y = 439;
+player.direction = 'up';
+}
+if (player.x > 650) {
+player.x = 649;
+player.direction = 'left';
+}
+if (8 in keys) {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+if (188 in keys) {
+player.speed -= 0.1;
+}
+if (190 in keys) {
+player.speed += 0.1;
+}
+}
+function drawBox(box) {
+ctx.fillStyle = box.color;
+ctx.fillRect(box.x, box.y, box.width, box.height);
+}
+function update() {
+input(player);
+}
+function draw() {
+drawBox(player);
+}
+function loop() {
+update();
+draw();
+window.requestAnimationFrame(loop);
+}
+loop();
+</script>
+
+
+</body>
+</html>
