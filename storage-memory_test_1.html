@@ -22,37 +22,12 @@ body {
   font-family: "Arial Black", Helvetica, sans-serif;
   color: black;
 }
-#editor {
-    width: 50%;
-    height: 100%;
-    padding: 15px 0px;
-    border: 2px solid black;
-}
+#notepad{height:98%;width:98%;padding:1%;font-size:100%;line-height:125%;font-family:san-serif}
+::selection{background:#7D7}
+::-moz-selection{background:#7D7}
 </style>
 
-<script>
-(function() {
-    var editorKey = 'html5-notepad';
-    var editor = document.getElementById('editor');
-    var cache = localStorage.getItem(editorKey);
-
-    if (cache) {
-        editor.innerHTML = cache;
-    }
-
-    function autosave() {
-        var newValue = editor.innerHTML;
-        if (cache != newValue) {
-            cache = newValue;
-            localStorage.setItem(editorKey, cache);
-        }
-    }
-
-    editor.addEventListener('input', autosave);
-})();
-</script>
-
-<head>
+</head>
 <body>
 
 <p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1>
@@ -61,10 +36,23 @@ body {
 <center><a href="https://" class="button">Home</a> <a href="/stuff" class="button">Projects</a> <a href="/about" class="button">About</a> <a href="" class="button">Coming Soon</a></center>
 <hr>
 
-<p>This is a test page for local storage</p>
 
+<textarea placeholder="Type here, see it here..."  id="notepad">
+</textarea>
 
-<center><div id="editor" style="font-family: sans-serif" contenteditable="true"></div></center>
+<script>
+("undefined"==typeof window.localStorage||"undefined"==typeof window.sessionStorage)&&function(){function e(f){function e(a){var b;b=new Date;b.setTime(b.getTime()+31536E6);document.cookie="localStorage="+a+("; expires="+b.toGMTString())+"; path=/"}function g(a){a=JSON.stringify(a);"session"==f?window.name=a:e(a)}var d=function(){var a;if("session"==f)a=window.name;else a:{a=document.cookie.split(";");var b,c;for(b=0;b<a.length;b++){for(c=a[b];" "==c.charAt(0);)c=c.substring(1,c.length);if(0==c.indexOf("localStorage=")){a=
+c.substring(13,c.length);break a}}a=null}return a?JSON.parse(a):{}}();return{length:0,clear:function(){d={};this.length=0;"session"==f?window.name="":e("")},getItem:function(a){return void 0===d[a]?null:d[a]},key:function(a){var b=0,c;for(c in d){if(b==a)return c;b++}return null},removeItem:function(a){delete d[a];this.length--;g(d)},setItem:function(a,b){d[a]=b+"";this.length++;g(d)}}}if("undefined"==typeof window.localStorage)window.localStorage=new e("local");if("undefined"==typeof window.sessionStorage)window.sessionStorage=
+new e("session")}();
+
+	var n = document.getElementById("notepad");
+	var s = function(){localStorage.setItem("notepad", n.value);}
+	if(window.localStorage){ n.value = localStorage.getItem("notepad");}
+
+	n.onchange = s();
+	setInterval( s, 500);
+	window.onunload = s();
+</script>
 
 </body>
 </html>
