@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Starway Galaxy</title>
+<style>
+.button {
+  background-color: #57544e;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid black;
+}
+body {
+  background-color: lightgrey;
+  font-family: "Arial Black", Helvetica, sans-serif;
+  color: black;
+}
+#editor {
+    width: 50%;
+    height: 100%;
+    padding: 15px 0px;
+    border: 2px solid black;
+}
+</style>
+<head>
+<body>
+
+
+<p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1>
+
+
+<hr>
+<center><a href="/index" class="button">Home</a> <a href="/stuff" class="button">Projects</a> <a href="/about" class="button">About</a> <a href="" class="button">Coming Soon</a></center>
+<hr>
+
+
+<p>This is a test page for local storage</p>
+
+
+<script>
+(function() {
+    var editorKey = 'html5-notepad';
+    var editor = document.getElementById('editor');
+    var cache = localStorage.getItem(editorKey);
+
+
+    if (cache) {
+        editor.innerHTML = cache;
+    }
+
+
+    function autosave() {
+        var newValue = editor.innerHTML;
+        if (cache != newValue) {
+            cache = newValue;
+            localStorage.setItem(editorKey, cache);
+        }
+    }
+
+
+    editor.addEventListener('input', autosave);
+})();
+</script>
+
+
+<center><div id="editor" style="font-family: sans-serif" contenteditable="true"></div></center>
+
+
+</body>
+</html>
