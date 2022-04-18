@@ -1,7 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
+  <meta name="keywords" content="galactic, star, galacticstarshine, starshine">
+  <meta name="description" content="This is my site where I post various projects and discuss upcoming ones">
+  <meta name="author" content="GalacticStarShine">
   <title>Starway Galaxy</title>
 <style>
 .button {
@@ -22,18 +25,88 @@ body {
   font-family: "Arial Black", Helvetica, sans-serif;
   color: black;
 }
+.float-parent-element { 
+    width: 100%; 
+} 
+.float-child-element { 
+    float: left; 
+    width: 50%; 
+} 
+.text {  
+    margin: 2rem;
+    padding: 40px 32px;
+    border: 1px solid black;
+    width: 60%;
+    font-family:sans-serif;
+} 
+.news {   
+    margin: 2rem;
+    padding: 40px 32px;
+    border: 1px solid black;
+    width: 50%;
+    font-family:sans-serif;
+}
+footer {
+  background-color: #57544e;
+  padding: 10px;
+  color: white;
+  font-family:Helvetica;
 </style>
+
+<script type="text/javascript">
+var sentences = new Array(
+"If you go to projects and click on multi-purpose tool, you can see date and time information!",
+
+"Something big is coming to this website. Stick around to see it!",
+
+"Rumor has it, if you resize the window in Artscript you can change how much drawling space you have...",
+
+"Anyone can learn to make a website, it's just that easy!",
+
+"This site is the biggest Javascript project I ever done.",
+
+"<em>This site uses cookies, but I have yet to make a warning for that.</em>",
+
+"Want to pass the time? One hour on Earth is 0.0026 seconds in space. So one hour on earth is equivalent to 7 YEARS in space!"
+);
+</script>
+
 <head>
 <body>
 
-
-<p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1>
-
+<p><h1><img src="logo.png" alt="Website logo" width="50" height="40"> Starway Galaxy</h1></p>
 
 <hr>
 <center><a href="/index" class="button">Home</a> <a href="/stuff" class="button">Projects</a> <a href="/about" class="button">About</a> <a href="" class="button">Coming Soon</a></center>
 <hr>
 <center> This is a standard website I made for a school project. Don't know much about web design but I hope<br>to expand on this site and upload various projects here.</center>
+
+<br>
+<center>
+<div class="float-parent-element">
+  <div class="float-child-element">
+    <div class="text" style=text-align:left>
+    <h4>
+    News:
+    </h4>
+    I been looking deep into making my own game recently. 
+I plan to construct the game in Javascript. 
+However, I never made a big project like
+this before. This would be a big task and
+I plan to ask for help from volunteer game developers.</div>
+  </div>
+  <div class="float-child-element">
+    <div class="news" style=text-align:left>
+    <h4>
+    Did you know?
+    </h4>
+    <script type="text/javascript">
+document.write(sentences[Math.floor(Math.random()*sentences.length)]);
+</script>
+</div>
+  </div>
+</div>
+</center>
 
 </body>
 </html>
